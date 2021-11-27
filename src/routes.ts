@@ -3,8 +3,9 @@ export const routes = {
   categories: {
     create: '/categories',
     receiveMany: '/categories',
-    receiveOne: '/categories/id',
+    receiveOne: '/categories/:id',
     update: '/categories/:id',
     delete: '/categories/:id',
+    magic: '/categories-magic/:id',
   },
 };

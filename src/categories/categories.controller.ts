@@ -26,6 +26,7 @@ import {
   DeleteCategoryRequestParams,
   DeleteCategoryResponse,
 } from './dto/delete.dto';
+import { MagicRequestParams, MagicResponse } from './dto/magic.dto';
 import { ReceiveManyResponse } from './dto/receive-many.dto';
 import {
   ReceiveOneRequestParams,
@@ -109,5 +110,18 @@ export class CategoriesController {
   ): Promise<DeleteCategoryResponse> {
     await this.service.deleteCategory(id);
     return { status: 'ok' };
+  }
+
+  @Post(routes.categories.magic)
+  @ApiOperation({
+    operationId: 'categoryMagic',
+    description: 'API: abracadabra',
+  })
+  @ApiOkResponse({ type: MagicResponse })
+  public async magicCategory(
+    @Param() { id }: MagicRequestParams,
+  ): Promise<MagicResponse> {
+    const payload = await this.service.veryRealisticMethod(id);
+    return { status: 'ok', payload };
   }
 }

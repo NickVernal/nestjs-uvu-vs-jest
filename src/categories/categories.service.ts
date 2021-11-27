@@ -1,10 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CategoryDoesNotExistError } from '../common/errors/errors';
-import { Repository } from 'typeorm';
+import { EntityManager, getManager, Repository } from 'typeorm';
 import { Category } from './categories.entity';
 import { CreateCategoryRequestData } from './dto/create.dto';
 import { UpdateCategoryRequestData } from './dto/update.dto';
+import { sleep } from 'src/utils/sleep';
 
 @Injectable()
 export class CategoriesService {
@@ -41,5 +42,33 @@ export class CategoriesService {
 
   public async findAll(): Promise<Category[]> {
     return this.categoriesRepo.find();
+  }
+
+  public async veryRealisticMethod(id: string): Promise<Category> {
+    return await getManager().transaction(async (manager) => {
+      const category = await this.findOneByIdAndLock(id, manager);
+      if (!category) {
+        throw new CategoryDoesNotExistError();
+      }
+
+      await sleep(1000);
+
+      return this.findOneByIdOrFail(id);
+    });
+  }
+
+  private async findOneByIdAndLock(
+    id: string,
+    manager: EntityManager,
+  ): Promise<Category> {
+    return this.getRepository(manager).findOne(id, {
+      lock: { mode: 'pessimistic_write' },
+    });
+  }
+
+  private getRepository(
+    manager: EntityManager | undefined,
+  ): Repository<Category> {
+    return manager ? manager.getRepository(Category) : this.categoriesRepo;
   }
 }
