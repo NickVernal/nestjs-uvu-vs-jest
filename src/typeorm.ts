@@ -1,4 +1,5 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { join } from 'path';
 import { env } from './config';
 
 export const defaultDbOptions: TypeOrmModuleOptions = {
@@ -8,8 +9,8 @@ export const defaultDbOptions: TypeOrmModuleOptions = {
   username: env.POSTGRES_USER,
   password: env.POSTGRES_PASSWORD,
   database: env.POSTGRES_DATABASE,
-  entities: ['src/**/*.entity.ts'],
-  migrations: ['database/default/*.ts'],
+  entities: [join(__dirname, '**', '*.entity.{ts,js}')],
+  migrations: [join(__dirname, '..', 'database', 'default', '*.{ts,js}')],
   cli: {
     migrationsDir: 'database/default',
   },
