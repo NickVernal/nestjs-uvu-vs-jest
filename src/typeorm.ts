@@ -8,4 +8,9 @@ export const defaultDbOptions: TypeOrmModuleOptions = {
   username: env.POSTGRES_USER,
   password: env.POSTGRES_PASSWORD,
   database: env.POSTGRES_DATABASE,
+  entities: ['src/**/*.entity.ts'],
+  migrations: ['database/default/*.ts'],
+  cli: {
+    migrationsDir: 'database/default',
+  },
 };
