@@ -1,0 +1,69 @@
+{
+  "Categories: Create category: Correct auth header, all fields -> 201 1": {
+    "payload": {
+      "canDoMagic": true,
+      "description": "1234",
+      "id": "*",
+      "name": "1234",
+      "slug": "12345678"
+    },
+    "status": "ok"
+  },
+  "Categories: Create category: Correct auth header, no required data -> 400 1": {
+    "error": "Bad Request",
+    "message": [
+      "slug must be longer than or equal to 8 characters",
+      "slug must be a string",
+      "name must be longer than or equal to 3 characters",
+      "name must be a string"
+    ],
+    "statusCode": 400
+  },
+  "Categories: Create category: Correct auth header, only required fields -> 201 1": {
+    "payload": {
+      "canDoMagic": true,
+      "description": "",
+      "id": "*",
+      "name": "1234",
+      "slug": "12345678"
+    },
+    "status": "ok"
+  },
+  "Categories: Receive one category: Correct auth header, category exists -> 200 1": {
+    "payload": {
+      "canDoMagic": true,
+      "description": "",
+      "id": "*",
+      "name": "Clothes",
+      "slug": "clothes"
+    },
+    "status": "ok"
+  },
+  "Categories: Trigger magic: Correct auth header, category exists -> 201 1": {
+    "payload": {
+      "canDoMagic": false,
+      "description": "",
+      "id": "*",
+      "name": "Clothes",
+      "slug": "clothes"
+    },
+    "status": "ok"
+  },
+  "Categories: Trigger magic: Correct auth header, category exists -> 201 2": {
+    "canDoMagic": false,
+    "description": "",
+    "id": "*",
+    "name": "Clothes",
+    "slug": "clothes"
+  },
+  "Categories: Trigger magic: Race condition 1": {
+    "payload": {
+      "canDoMagic": false,
+      "description": "",
+      "id": "*",
+      "name": "Clothes",
+      "slug": "clothes"
+    },
+    "status": "ok"
+  }
+}

@@ -18,7 +18,8 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "env-cmd -f .env jest --config ./test/jest-e2e.json",
+    "jest:e2e": "env-cmd -f .env jest --config ./test/jest-e2e.json",
+    "uvu:e2e": "env-cmd -f .env ts-node src/categories/__tests__/categories.uvu.ts",
     "typeorm": "env-cmd -f .env ts-node ./node_modules/.bin/typeorm -f ./ormconfig.ts",
     "db:migration:new": "yarn run typeorm migration:generate -p -n newMigration",
     "db:migrate": "yarn run typeorm migration:run"
@@ -40,7 +41,8 @@
     "rimraf": "3.0.2",
     "rxjs": "7.2.0",
     "swagger-ui-express": "4.1.6",
-    "typeorm": "0.2.41"
+    "typeorm": "0.2.41",
+    "uvu": "0.5.2"
   },
   "devDependencies": {
     "@nestjs/cli": "8.0.0",
