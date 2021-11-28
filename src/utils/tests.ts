@@ -40,3 +40,15 @@ export async function getCategories(): Promise<Category[]> {
     .getRepository(Category)
     .find({ order: { slug: 'ASC' } });
 }
+
+export async function createCategory(
+  data: Partial<Category> = {},
+): Promise<Category> {
+  return getManager()
+    .getRepository(Category)
+    .save({
+      name: 'Clothes',
+      slug: 'clothes',
+      ...data,
+    });
+}

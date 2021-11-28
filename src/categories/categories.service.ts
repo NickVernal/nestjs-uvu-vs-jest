@@ -50,7 +50,7 @@ export class CategoriesService {
   }
 
   public async veryRealisticMethod(id: string): Promise<Category> {
-    return await getManager().transaction(async (manager) => {
+    await getManager().transaction(async (manager) => {
       const category = await this.findOneByIdAndLock(id, manager);
       if (!category) {
         throw new CategoryDoesNotExistError();
@@ -62,9 +62,8 @@ export class CategoriesService {
       await sleep(1000);
 
       await this.getRepository(manager).update(id, { canDoMagic: false });
-
-      return this.findOneByIdOrFail(id);
     });
+    return this.findOneByIdOrFail(id);
   }
 
   private async findOneByIdAndLock(

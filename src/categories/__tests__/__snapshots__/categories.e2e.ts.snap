@@ -38,3 +38,52 @@ Object {
   "status": "ok",
 }
 `;
+
+exports[`Categories: Receive one category: Correct auth header, category exists -> 200 1`] = `
+Object {
+  "payload": Object {
+    "canDoMagic": true,
+    "description": "",
+    "id": "*",
+    "name": "Clothes",
+    "slug": "clothes",
+  },
+  "status": "ok",
+}
+`;
+
+exports[`Categories: Trigger magic: Correct auth header, category exists -> 201 1`] = `
+Object {
+  "payload": Object {
+    "canDoMagic": false,
+    "description": "",
+    "id": "*",
+    "name": "Clothes",
+    "slug": "clothes",
+  },
+  "status": "ok",
+}
+`;
+
+exports[`Categories: Trigger magic: Correct auth header, category exists -> 201 2`] = `
+Category {
+  "canDoMagic": false,
+  "description": "",
+  "id": "*",
+  "name": "Clothes",
+  "slug": "clothes",
+}
+`;
+
+exports[`Categories: Trigger magic: Race condition 1`] = `
+Object {
+  "payload": Object {
+    "canDoMagic": false,
+    "description": "",
+    "id": "*",
+    "name": "Clothes",
+    "slug": "clothes",
+  },
+  "status": "ok",
+}
+`;
