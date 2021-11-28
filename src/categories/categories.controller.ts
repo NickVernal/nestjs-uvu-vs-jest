@@ -14,7 +14,7 @@ import {
   ApiTags,
   ApiBearerAuth,
 } from '@nestjs/swagger';
-import { AuthStrategy } from 'src/constants';
+import { AuthStrategy } from '../constants';
 import { ApiKeyGuard } from '../auth/strategies/api-key/api-key.guard';
 import { routes } from '../routes';
 import { CategoriesService } from './categories.service';

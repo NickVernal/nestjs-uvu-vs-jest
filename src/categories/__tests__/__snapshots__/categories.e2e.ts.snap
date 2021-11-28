@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Categories: Create category: Correct auth header, all fields -> 201 1`] = `
+Object {
+  "payload": Object {
+    "canDoMagic": true,
+    "description": "1234",
+    "id": "*",
+    "name": "1234",
+    "slug": "12345678",
+  },
+  "status": "ok",
+}
+`;
+
+exports[`Categories: Create category: Correct auth header, no required data -> 400 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": Array [
+    "slug must be longer than or equal to 8 characters",
+    "slug must be a string",
+    "name must be longer than or equal to 3 characters",
+    "name must be a string",
+  ],
+  "statusCode": 400,
+}
+`;
+
+exports[`Categories: Create category: Correct auth header, only required fields -> 201 1`] = `
+Object {
+  "payload": Object {
+    "canDoMagic": true,
+    "description": "",
+    "id": "*",
+    "name": "1234",
+    "slug": "12345678",
+  },
+  "status": "ok",
+}
+`;

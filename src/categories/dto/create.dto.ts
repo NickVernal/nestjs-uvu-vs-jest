@@ -16,7 +16,7 @@ export class CreateCategoryRequestData {
   @ApiProperty({ required: false })
   @IsOptional()
   @IsString()
-  description: string;
+  description?: string;
 }
 
 export class CreateCategoryResponse {

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { AuthStrategy } from 'src/constants';
+import { AuthStrategy } from '../../../constants';
 
 @Injectable()
 export class ApiKeyGuard extends AuthGuard(AuthStrategy.ApiKey) {}

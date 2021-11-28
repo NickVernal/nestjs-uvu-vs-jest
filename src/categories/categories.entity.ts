@@ -13,4 +13,7 @@ export class Category {
 
   @Column({ default: '' })
   description: string;
+
+  @Column({ default: true })
+  canDoMagic: boolean;
 }

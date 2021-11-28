@@ -1,11 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CategoryDoesNotExistError } from '../common/errors/errors';
 import { EntityManager, getManager, Repository } from 'typeorm';
+
+import {
+  CategoryCanNotDoMagicError,
+  CategoryDoesNotExistError,
+} from '../common/errors/errors';
+import { sleep } from '../utils/sleep';
+
 import { Category } from './categories.entity';
 import { CreateCategoryRequestData } from './dto/create.dto';
 import { UpdateCategoryRequestData } from './dto/update.dto';
-import { sleep } from 'src/utils/sleep';
 
 @Injectable()
 export class CategoriesService {
@@ -50,8 +55,13 @@ export class CategoriesService {
       if (!category) {
         throw new CategoryDoesNotExistError();
       }
+      if (!category.canDoMagic) {
+        throw new CategoryCanNotDoMagicError();
+      }
 
       await sleep(1000);
+
+      await this.getRepository(manager).update(id, { canDoMagic: false });
 
       return this.findOneByIdOrFail(id);
     });

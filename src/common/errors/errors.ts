@@ -6,3 +6,9 @@ export class CategoryDoesNotExistError extends CustomError {
     super(ErrorName.CategoryDoesNotExistError);
   }
 }
+
+export class CategoryCanNotDoMagicError extends CustomError {
+  constructor() {
+    super(ErrorName.CategoryCanNotDoMagicError);
+  }
+}
