@@ -19,7 +19,8 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "jest:e2e": "env-cmd -f .env jest --config ./test/jest-e2e.json",
-    "uvu:e2e": "env-cmd -f .env ts-node src/categories/__tests__/categories.uvu.ts",
+    "uvu:file": "env-cmd -f .env ts-node",
+    "uvu:e2e": "for f in src/*/?*/?*.uvu.ts; do yarn uvu:file $f; done",
     "typeorm": "env-cmd -f .env ts-node ./node_modules/.bin/typeorm -f ./ormconfig.ts",
     "db:migration:new": "yarn run typeorm migration:generate -p -n newMigration",
     "db:migrate": "yarn run typeorm migration:run"
