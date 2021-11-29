@@ -1,5 +1,5 @@
 {
-  "name": "nestjs-uvu-vs-jest-comparison",
+  "name": "nestjs-uvu-vs-jest",
   "version": "0.0.1",
   "description": "",
   "author": "",
@@ -21,6 +21,7 @@
     "jest:e2e": "env-cmd -f .env jest --config ./test/jest-e2e.json",
     "uvu:file": "env-cmd -f .env ts-node",
     "uvu:e2e": "for f in src/*/?*/?*.uvu.ts; do yarn uvu:file $f; done",
+    "uvu:e2e:categories": "env-cmd -f .env ts-node src/categories/__tests__/categories.uvu.ts",
     "typeorm": "env-cmd -f .env ts-node ./node_modules/.bin/typeorm -f ./ormconfig.ts",
     "db:migration:new": "yarn run typeorm migration:generate -p -n newMigration",
     "db:migrate": "yarn run typeorm migration:run"

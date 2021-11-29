@@ -27,7 +27,9 @@ async function timeIt(fn: () => void): Promise<number> {
 async function compare() {
   const amount = 10;
   const jestResult = await timeIt(() => runNTimes(amount, 'yarn jest:e2e'));
-  const uvuResult = await timeIt(() => runNTimes(amount, 'yarn uvu:e2e'));
+  const uvuResult = await timeIt(() =>
+    runNTimes(amount, 'yarn uvu:e2e:categories'),
+  );
   console.log(`Jest: ${jestResult}, ${jestResult / amount}`);
   console.log(`Uvu: ${uvuResult}, ${uvuResult / amount}`);
 }

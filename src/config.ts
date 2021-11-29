@@ -1,4 +1,5 @@
-// TODO validate envs, autofill
+// TODO validate envs
+// TODO autofill
 
 export const env = {
   // DB config
